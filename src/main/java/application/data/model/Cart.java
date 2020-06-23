@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity(name="tbl_cart")
-public class CartModel {
+public class Cart {
 	
 	@Id
 	@Column(name="cart_id")
@@ -27,6 +27,9 @@ public class CartModel {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
     private List<CartProduct> listCartProducts = new ArrayList<>();
+
+	public Cart() {
+	}
 
 	public int getId() {
 		return id;

@@ -28,7 +28,11 @@ public class ProductImage {
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductModel product;
+    private Product product;
+
+	public ProductImage() {
+	}
+
 
 	public int getId() {
 		return id;
@@ -54,11 +58,11 @@ public class ProductImage {
 		this.create_date = create_date;
 	}
 
-	public ProductModel getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductModel product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 }

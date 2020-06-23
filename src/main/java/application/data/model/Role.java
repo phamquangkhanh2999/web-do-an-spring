@@ -15,7 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity(name="tbl_role")
-public class RoleModel {
+public class Role {
 	@Id
 	@Column(name="role_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +32,11 @@ public class RoleModel {
     @JoinTable(name = "tbl_user_role",
             joinColumns = {@JoinColumn(name = "role_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
-    private Set<UserModel> listRole = new HashSet<>();
+    private Set<User> listRole = new HashSet<>();
+
+	public Role() {
+	}
+
 
 	public int getId() {
 		return id;
@@ -50,11 +54,11 @@ public class RoleModel {
 		this.name = name;
 	}
 
-	public Set<UserModel> getListRole() {
+	public Set<User> getListRole() {
 		return listRole;
 	}
 
-	public void setListRole(Set<UserModel> listRole) {
+	public void setListRole(Set<User> listRole) {
 		this.listRole = listRole;
 	}
 

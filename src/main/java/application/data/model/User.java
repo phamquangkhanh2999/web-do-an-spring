@@ -1,16 +1,12 @@
 package application.data.model;
 
 import java.util.Date;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity(name = "tbl_user")
-public class UserModel {
+public class User {
 	
 	@Id
 	@Column(name="user_id")
@@ -43,6 +39,14 @@ public class UserModel {
 	
 	@Column(name="create_date")
 	private Date create_date;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "username")
+	Set<Rate> listRate;
+
+	public User() {
+	}
+
 
 	public int getId() {
 		return id;
@@ -123,6 +127,14 @@ public class UserModel {
 	public void setCreate_date(Date create_date) {
 		this.create_date = create_date;
 	}
-	
-	
+
+
+
+	public Set<Rate> getListRate() {
+		return listRate;
+	}
+
+	public void setListRate(Set<Rate> listRate) {
+		this.listRate = listRate;
+	}
 }

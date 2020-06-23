@@ -21,11 +21,13 @@ public class OrderProduct {
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private OrderModel order;
+    private Order order;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductModel product;
+    private Product product;
+
+
     
     @Column(name = "amount")
     private int amount;
@@ -56,19 +58,19 @@ public class OrderProduct {
 		this.id = id;
 	}
 
-	public OrderModel getOrder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrder(OrderModel order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 
-	public ProductModel getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductModel product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
@@ -127,6 +129,7 @@ public class OrderProduct {
 	public void setColor(String color) {
 		this.color = color;
 	}
-    
-    
+
+	public OrderProduct() {
+	}
 }
