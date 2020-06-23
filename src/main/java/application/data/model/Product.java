@@ -72,13 +72,12 @@ public class Product {
 	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_id")
-	Set<Rate> listRate;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+	private List<Rate> rateList = new ArrayList<>();
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "product_id")
-	Set<SizeColor> listSizeColor;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+	private List<SizeColor> listSizeColor = new ArrayList<>();
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private List<ProductGuarantee> guaranteeArrayList = new ArrayList<>();
@@ -222,19 +221,20 @@ public class Product {
 		this.category = category;
 	}
 
-	public Set<Rate> getListRate() {
-		return listRate;
+	public List<Rate> getRateList() {
+		return rateList;
 	}
 
-	public void setListRate(Set<Rate> listRate) {
-		this.listRate = listRate;
+	public void setRateList(List<Rate> rateList) {
+		this.rateList = rateList;
 	}
 
-	public Set<SizeColor> getListSizeColor() {
+
+	public List<SizeColor> getListSizeColor() {
 		return listSizeColor;
 	}
 
-	public void setListSizeColor(Set<SizeColor> listSizeColor) {
+	public void setListSizeColor(List<SizeColor> listSizeColor) {
 		this.listSizeColor = listSizeColor;
 	}
 

@@ -1,6 +1,8 @@
 package application.data.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -14,7 +16,7 @@ public class User {
 	private int id;
 	
 	@Column(name="username")
-	private String username;
+	private String userName;
 	
 	@Column(name="email")
 	private String email;
@@ -32,17 +34,16 @@ public class User {
 	private String address;
 	
 	@Transient
-	private String password_has;
+	private String password;
 	
 	@Column(name="phone_number")
 	private String phone;
 	
 	@Column(name="create_date")
-	private Date create_date;
+	private Date createDate;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "username")
-	Set<Rate> listRate;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private List<Rate> rateList = new ArrayList<>();
 
 	public User() {
 	}
@@ -57,11 +58,11 @@ public class User {
 	}
 
 	public String getUsername() {
-		return username;
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
@@ -104,12 +105,20 @@ public class User {
 		this.address = address;
 	}
 
-	public String getPassword_has() {
-		return password_has;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setPassword_has(String password_has) {
-		this.password_has = password_has;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPhone() {
@@ -120,21 +129,21 @@ public class User {
 		this.phone = phone;
 	}
 
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public List<Rate> getRateList() {
+		return rateList;
+	}
+
+	public void setRateList(List<Rate> rateList) {
+		this.rateList = rateList;
 	}
 
 
-
-	public Set<Rate> getListRate() {
-		return listRate;
-	}
-
-	public void setListRate(Set<Rate> listRate) {
-		this.listRate = listRate;
-	}
 }
