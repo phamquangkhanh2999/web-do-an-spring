@@ -22,9 +22,10 @@ public class SizeColor {
     @Column(name = "amount")
     private int amount;
 
-    @OneToOne
-    @Column(name = "product_id")
-    private Product products;
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
 
     public SizeColor() {
     }
@@ -69,11 +70,13 @@ public class SizeColor {
         this.amount = amount;
     }
 
-    public Product getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(Product products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
+
+
 }

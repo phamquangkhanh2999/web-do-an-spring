@@ -13,13 +13,13 @@ public class Rate {
     @Column(name = "star")
     private String star;
 
-    @OneToOne
-    @Column(name = "username")
-    private User userName;
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "username")
+    private User user;
 
-    @OneToOne
-    @Column(name = "product_id")
-    private Product products;
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public Rate() {
 
@@ -41,19 +41,19 @@ public class Rate {
         this.star = star;
     }
 
-    public User getUserName() {
-        return userName;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserName(User userName) {
-        this.userName = userName;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Product getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(Product products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
