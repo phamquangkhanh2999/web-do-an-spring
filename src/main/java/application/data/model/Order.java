@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity(name = "tbl_order")
-public class OrderModel {
+public class Order {
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id")
@@ -126,6 +126,8 @@ public class OrderModel {
 	public void setListProductOrders(List<OrderProduct> listProductOrders) {
 		this.listProductOrders = listProductOrders;
 	}
-    
-    
+
+	public Order() {
+	}
+
 }

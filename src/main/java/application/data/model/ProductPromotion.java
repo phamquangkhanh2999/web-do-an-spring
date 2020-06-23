@@ -22,17 +22,21 @@ public class ProductPromotion {
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "promotion_id")
-    private PromotionModel promotion;
+    private Promotion promotion;
 
     @Column(name = "promotion_id", insertable = false, updatable = false)
     private int promotion_id;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductModel product;
+    private Product product;
 
     @Column(name = "product_id", insertable = false, updatable = false)
     private int productId;
+
+	public ProductPromotion() {
+	}
+
 
 	public int getId() {
 		return id;
@@ -50,11 +54,11 @@ public class ProductPromotion {
 		this.discount = discount;
 	}
 
-	public PromotionModel getPromotion() {
+	public Promotion getPromotion() {
 		return promotion;
 	}
 
-	public void setPromotion(PromotionModel promotion) {
+	public void setPromotion(Promotion promotion) {
 		this.promotion = promotion;
 	}
 
@@ -66,11 +70,11 @@ public class ProductPromotion {
 		this.promotion_id = promotion_id;
 	}
 
-	public ProductModel getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductModel product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 

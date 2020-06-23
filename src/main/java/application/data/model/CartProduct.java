@@ -31,17 +31,21 @@ public class CartProduct {
 	
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
-    private CartModel cart;
+    private Cart cart;
 
     @Column(name = "cart_id", insertable = false, updatable = false)
     private int cartId;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private ProductModel product;
+    private Product product;
 
     @Column(name = "product_id", insertable = false, updatable = false)
     private int productId;
+
+	public CartProduct() {
+	}
+
 
 	public int getId() {
 		return id;
@@ -83,11 +87,11 @@ public class CartProduct {
 		this.price = price;
 	}
 
-	public CartModel getCart() {
+	public Cart getCart() {
 		return cart;
 	}
 
-	public void setCart(CartModel cart) {
+	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
 
@@ -99,11 +103,11 @@ public class CartProduct {
 		this.cartId = cartId;
 	}
 
-	public ProductModel getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(ProductModel product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 

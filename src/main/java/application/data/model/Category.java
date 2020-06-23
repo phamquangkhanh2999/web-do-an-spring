@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity(name="tbl_category")
-public class CategoryModel {
+public class Category {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "category_id")
@@ -30,7 +30,11 @@ public class CategoryModel {
     private Date createdDate;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-    private List<ProductModel> listProducts = new ArrayList<>();
+    private List<Product> listProducts = new ArrayList<>();
+
+	public Category() {
+	}
+
 
 	public int getId() {
 		return id;
@@ -64,11 +68,11 @@ public class CategoryModel {
 		this.createdDate = createdDate;
 	}
 
-	public List<ProductModel> getListProducts() {
+	public List<Product> getListProducts() {
 		return listProducts;
 	}
 
-	public void setListProducts(List<ProductModel> listProducts) {
+	public void setListProducts(List<Product> listProducts) {
 		this.listProducts = listProducts;
 	}
     

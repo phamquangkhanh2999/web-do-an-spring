@@ -2,6 +2,7 @@ package application.data.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity(name = "tbl_product")
-public class ProductModel {
+public class Product {
 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "product_id")
@@ -69,7 +70,21 @@ public class ProductModel {
 
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
-	private CategoryModel category;
+	private Category category;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_id")
+	Set<Rate> listRate;
+
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_id")
+	Set<SizeColor> listSizeColor;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+	private List<ProductGuarantee> guaranteeArrayList = new ArrayList<>();
+
+	public Product() {
+	}
 
 	public int getId() {
 		return id;
@@ -199,12 +214,35 @@ public class ProductModel {
 		this.categoryId = categoryId;
 	}
 
-	public CategoryModel getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(CategoryModel category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
+
+	public Set<Rate> getListRate() {
+		return listRate;
+	}
+
+	public void setListRate(Set<Rate> listRate) {
+		this.listRate = listRate;
+	}
+
+	public Set<SizeColor> getListSizeColor() {
+		return listSizeColor;
+	}
+
+	public void setListSizeColor(Set<SizeColor> listSizeColor) {
+		this.listSizeColor = listSizeColor;
+	}
+
+	public List<ProductGuarantee> getGuaranteeArrayList() {
+		return guaranteeArrayList;
+	}
+
+	public void setGuaranteeArrayList(List<ProductGuarantee> guaranteeArrayList) {
+		this.guaranteeArrayList = guaranteeArrayList;
+	}
 }

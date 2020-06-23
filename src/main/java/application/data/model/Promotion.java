@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity(name="tbl_promotion")
-public class PromotionModel {
+public class Promotion {
 	@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "promotion_id")
     @Id
@@ -30,6 +30,8 @@ public class PromotionModel {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "promotion")
     private List<ProductPromotion> listProductPromotions = new ArrayList<>();
+
+
 
 	public int getId() {
 		return id;
