@@ -44,6 +44,9 @@ public class Product {
 	@Column(name = "resolution")
 	private String resolution;
 
+	@Column(name = "product_main_image")
+	private String mainImage;
+
 	@Column(name = "cpu")
 	private String cpu;
 
@@ -245,4 +248,13 @@ public class Product {
 	public void setGuaranteeArrayList(List<ProductGuarantee> guaranteeArrayList) {
 		this.guaranteeArrayList = guaranteeArrayList;
 	}
+
+	public String getMainImage() {
+		return mainImage;
+	}
+
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
+	}
 }
+

@@ -35,14 +35,7 @@ public class Order {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "email")
-    private String email;
 
-    @Column(name = "price")
-    private double price;
-
-    @Column (name = "created_date")
-    private Date createdDate;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderProduct> listProductOrders = new ArrayList<>();
@@ -95,29 +88,7 @@ public class Order {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
+	
 
 	public List<OrderProduct> getListProductOrders() {
 		return listProductOrders;
