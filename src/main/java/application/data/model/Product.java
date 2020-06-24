@@ -1,6 +1,7 @@
 package application.data.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -47,6 +48,9 @@ public class Product {
 	@Column(name = "product_main_image")
 	private String mainImage;
 
+	@Column(name = "description")
+	private String description;
+
 	@Column(name = "cpu")
 	private String cpu;
 
@@ -63,10 +67,10 @@ public class Product {
 	private String other;
 
 	@Column(name = "create_date")
-	private String createDate;
+	private Date createdDate;
 
 	@Column(name = "year_guaratee")
-	private String yearGuaratee;
+	private int yearGuaratee;
 
 	@Column(name = "category_id", insertable = false, updatable = false)
 	private int categoryId;
@@ -114,6 +118,14 @@ public class Product {
 
 	public List<ProductImage> getProductImageList() {
 		return productImageList;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public void setProductImageList(List<ProductImage> productImageList) {
@@ -192,19 +204,19 @@ public class Product {
 		this.other = other;
 	}
 
-	public String getCreateDate() {
-		return createDate;
+	public Date getCreateDate() {
+		return createdDate;
 	}
 
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public String getYearGuaratee() {
+	public int getYearGuaratee() {
 		return yearGuaratee;
 	}
 
-	public void setYearGuaratee(String yearGuaratee) {
+	public void setYearGuaratee(int yearGuaratee) {
 		this.yearGuaratee = yearGuaratee;
 	}
 

@@ -26,7 +26,7 @@ public class Category {
     @Column(name = "short_desc")
     private String shortDesc;
 
-    @Column(name = "created_date")
+    @Column(name = "create_date")
     private Date createdDate;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")

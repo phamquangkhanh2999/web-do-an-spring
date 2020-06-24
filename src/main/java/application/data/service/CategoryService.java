@@ -62,4 +62,16 @@ public class CategoryService {
     public long getTotalCategories(){
         return categoryRepository.getTotalCategories();
     }
+
+    public boolean deleteCatoryID(int categoryId) {
+        try {
+            categoryRepository.delete(categoryId);
+            return true;
+        } catch (Exception e) {
+
+            logger.error(e.getMessage());
+
+        }
+        return false;
+    }
 }

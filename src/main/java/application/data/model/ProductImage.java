@@ -24,7 +24,6 @@ public class ProductImage {
 	
 	@Column(name ="create_date")
 	private Date createDate;
-//	private String create_date;
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
