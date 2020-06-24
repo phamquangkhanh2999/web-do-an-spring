@@ -114,7 +114,7 @@ public class ProductAPIController {
             product.setCamera(dto.getCamera());
             product.setPin(dto.getPin());
             product.setOther(dto.getOther());
-            product.setCreateDate(dto.getCreatedDate());
+            product.setCreateDate(new Date());
             product.setYearGuaratee(dto.getYearGuaratee());
             product.setCategory(categoryService.findOne(dto.getCategoryId()));
 
