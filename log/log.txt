@@ -1,0 +1,4 @@
+2020-Jun-24 14:15:55 PM [http-nio-8080-exec-4] ERROR application.data.service.SizeColorService - No class application.data.model.SizeColor entity with id 1 exists!
+2020-Jun-24 15:46:47 PM [http-nio-8080-exec-2] ERROR application.controller.api.ProductAPIController - could not extract ResultSet
+2020-Jun-24 15:48:18 PM [http-nio-8080-exec-1] ERROR application.controller.api.ProductAPIController - could not extract ResultSet
+2020-Jun-24 15:49:49 PM [http-nio-8080-exec-6] ERROR application.controller.api.CategoryAPIController - could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
