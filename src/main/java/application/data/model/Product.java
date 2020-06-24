@@ -195,6 +195,7 @@ public class Product {
 	public void setPin(String pin) {
 		this.pin = pin;
 	}
+	
 
 	public String getOther() {
 		return other;
