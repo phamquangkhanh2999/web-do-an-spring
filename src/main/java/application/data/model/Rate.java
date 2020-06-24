@@ -12,10 +12,15 @@ public class Rate {
 
     @Column(name = "star")
     private String star;
+    @Column(name = "username", insertable = false, updatable = false)
+    private String userName;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "username")
     private User user;
+
+    @Column(name = "product_id", insertable = false, updatable = false)
+    private int productId;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
@@ -23,6 +28,22 @@ public class Rate {
 
     public Rate() {
 
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getId() {

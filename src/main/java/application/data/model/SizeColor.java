@@ -22,12 +22,23 @@ public class SizeColor {
     @Column(name = "amount")
     private int amount;
 
+    @Column(name = "product_id", insertable = false, updatable = false)
+    private int productId;
+
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 
 
     public SizeColor() {
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getId() {

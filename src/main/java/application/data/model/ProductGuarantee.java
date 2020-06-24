@@ -15,6 +15,9 @@ public class ProductGuarantee {
     @Column(name = "day_guarantee")
     private String guaranteeDay;
 
+    @Column(name = "product_order_id", insertable = false, updatable = false)
+    private int productOrderId;
+
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "product_order_id")
     private Product product;
@@ -24,6 +27,14 @@ public class ProductGuarantee {
 
     public int getId() {
         return id;
+    }
+
+    public int getProductOrderId() {
+        return productOrderId;
+    }
+
+    public void setProductOrderId(int productOrderId) {
+        this.productOrderId = productOrderId;
     }
 
     public void setId(int id) {

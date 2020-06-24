@@ -22,8 +22,8 @@ public class ProductImage {
 	@Column(name="link")
 	private String link;
 	
-	@Column(name =" create_date")
-	private Date create_date;
+	@Column(name ="create_date")
+	private Date createDate;
 //	private String create_date;
 	
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
@@ -50,12 +50,12 @@ public class ProductImage {
 		this.link = link;
 	}
 
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public Product getProduct() {
