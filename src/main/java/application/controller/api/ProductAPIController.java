@@ -61,12 +61,12 @@ public class ProductAPIController {
             List<Category> categoryList = categoryService.getListAllCategories();
             List<Product> productList = productService.getListAllProducts();
             Random random = new Random();
-            for(long i = totalProducts + 1; i <= 10; i++ ) {
+            for(long i = totalProducts + 1; i <= 20; i++ ) {
                 Product product = new Product();
                 product.setName("Product " + i);
                 product.setShortDesc("Short Desc Product "+ i);
                 product.setDescription("Description Product " + i);
-                product.setMainImage("Product main "+ i);;
+                product.setMainImage(images[random.nextInt(images.length)]);;
                 product.setManufacturer("Manufacturer Product " + i);
                 product.setModel("Model Product " + i);
                 product.setScreen("Screen " + 1);

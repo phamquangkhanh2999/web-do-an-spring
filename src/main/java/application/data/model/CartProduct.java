@@ -19,9 +19,7 @@ public class CartProduct {
 
 	@Column(name = "amount")
     private int amount;
-	
-	@Column(name="size")
-	private String size;
+
 	
 	@Column(name="color")
 	private String color;
@@ -63,13 +61,6 @@ public class CartProduct {
 		this.amount = amount;
 	}
 
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
 
 	public String getColor() {
 		return color;

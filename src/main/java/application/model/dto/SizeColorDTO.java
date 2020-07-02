@@ -5,7 +5,6 @@ public class SizeColorDTO {
 
     private int id;
     private double price;
-    private String size;
     private String color;
     private int amount;
     private int productId;
@@ -26,13 +25,6 @@ public class SizeColorDTO {
         this.price = price;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     public String getColor() {
         return color;
