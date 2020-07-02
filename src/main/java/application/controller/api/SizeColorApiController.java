@@ -27,8 +27,7 @@ public class SizeColorApiController {
     @Autowired
     private ProductService productService;
 
-    private String[] arrColor = {"Trắng", "Xanh","Vàng","Đen","Bạch Kim","Hồng"};
-    private String[] arrSize = {"64GB", "128GB","256GB"};
+    private String[] arrColor = {"Trắng", "Xanh","Vàng","Đen","Bạch Kim","Hồng","Đen"};
 
     @GetMapping("/fake")
     public BaseApiResult fakeProductImage() {
@@ -40,25 +39,42 @@ public class SizeColorApiController {
             for(Product product : productList) {
                 if(product.getListSizeColor().size() == 0) {
                     List<SizeColor> sizeColors = new ArrayList<>();
+                    double rangeMin = 200;
+                    double rangeMax = 800;
+                    double randomPrice = rangeMin + (rangeMax - rangeMin) * random.nextDouble();
+                    List<Integer> arrIndex =  new ArrayList<>();
+                    arrIndex.add(-1);
                     for (int i=0; i<random.nextInt(3) +1 ; i++) {
 
                         SizeColor sizeColor = new SizeColor();
                         /**
                          * random price
                          */
-                        double rangeMin = 4;
-                        double rangeMax = 30;
-                        double randomPrice = rangeMin + (rangeMax - rangeMin) * random.nextDouble();
+                        double rangeMin1 = 10;
+                        double rangeMax1 = 30;
+                        double randomPrice1 = rangeMin1 + (rangeMax1 - rangeMin1) * random.nextDouble();
+                        double price = randomPrice +  randomPrice1;
                         DecimalFormat f = new DecimalFormat("##.00");
-                        String priceStr  = f.format(randomPrice);
-                        randomPrice = Double.parseDouble(String.valueOf(priceStr));
-                        sizeColor.setPrice(randomPrice);
+                        String priceStr  = f.format(price);
+                        price = Double.parseDouble(String.valueOf(priceStr));
+                        sizeColor.setPrice(price);
 
                         sizeColor.setProduct(product);
 
-                        sizeColor.setColor(arrColor[random.nextInt(arrColor.length)]);
-                        sizeColor.setSize(arrSize[random.nextInt(arrSize.length)]);
-                        int amountMin = 1;
+                        int tam = random.nextInt(arrColor.length);
+
+                        if (!arrIndex.contains(tam)) {
+                            arrIndex.add(tam);
+                            sizeColor.setColor(arrColor[tam]);
+                        } else {
+                            tam = random.nextInt(arrColor.length);
+                            if (!arrIndex.contains(tam)) {
+                                arrIndex.add(tam);
+                                sizeColor.setColor(arrColor[tam]);
+                            }
+                        }
+
+                        int amountMin = 10;
                         int amountMax = 50;
                         int randomAmount = (int) (amountMin + Math.floor((amountMax - amountMin) * random.nextDouble()));
                         sizeColor.setAmount(randomAmount);
@@ -66,6 +82,7 @@ public class SizeColorApiController {
                         sizeColors.add(sizeColor);
 
                     }
+                    arrIndex.clear();
                     sizeColorService.addNewListSizeColors(sizeColors);
                 }
             }
@@ -85,7 +102,6 @@ public class SizeColorApiController {
         try {
             SizeColor sizeColor = new SizeColor();
             sizeColor.setProduct(productService.findOne(dto.getProductId()));
-            sizeColor.setSize(dto.getSize());
             sizeColor.setColor(dto.getColor());
             sizeColor.setAmount(dto.getAmount());
             sizeColor.setPrice(dto.getPrice());
@@ -108,7 +124,6 @@ public class SizeColorApiController {
         try {
             SizeColor sizeColor = sizeColorService.findOne(sizeColorId);
             sizeColor.setProduct(productService.findOne(dto.getProductId()));
-            sizeColor.setSize(dto.getSize());
             sizeColor.setColor(dto.getColor());
             sizeColor.setAmount(dto.getAmount());
             sizeColor.setPrice(dto.getPrice());
@@ -140,7 +155,6 @@ public class SizeColorApiController {
                 dto.setAmount(sizeColorEntity.getAmount());
                 dto.setColor(sizeColorEntity.getColor());
                 dto.setPrice(sizeColorEntity.getPrice());
-                dto.setSize(sizeColorEntity.getSize());
                 result.setSuccess(true);
                 result.setData(dto);
             }

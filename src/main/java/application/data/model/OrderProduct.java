@@ -44,9 +44,6 @@ public class OrderProduct {
     @Column(name="year_guaratee")
     private String year_guaratee;
     
-    @Column(name="size")
-    private String size;
-    
     @Column(name="color")
     private String color;
 
@@ -114,13 +111,6 @@ public class OrderProduct {
 		this.year_guaratee = year_guaratee;
 	}
 
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
 
 	public String getColor() {
 		return color;

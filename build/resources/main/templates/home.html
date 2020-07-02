@@ -3,9 +3,164 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>home</title>
+    <title>Trang chủ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="image/favicon.ico">
+    <link rel="stylesheet" type="text/css" th:href="@{/js/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
 </head>
 <body>
-<h1 th:text="${vm}"></h1>
+
+<div th:replace="fragments/header :: header_info"></div>
+<div class="banner container">
+    <div class="owl-carousel owl-theme owl-loaded owl-drag">
+        <div class="item-slider">
+            <a target="_blank" href="img/banners/banner1.png">
+                <img src="img/banners/banner1.png">
+            </a>
+        </div>
+        <div class="item-slider">
+            <a target="_blank" href="img/banners/banner2.png">
+                <img src="img/banners/banner2.png">
+            </a>
+        </div>
+        <div class="item-slider">
+            <a target="_blank" href="img/banners/banner3.png">
+                <img src="img/banners/banner3.png">
+            </a>
+        </div>
+        <div class="item-slider">
+            <a target="_blank" href="img/banners/banner4.png">
+                <img src="img/banners/banner4.png">
+            </a>
+        </div>
+        <div class="item-slider">
+            <a target="_blank" href="img/banners/banner5.png">
+                <img src="img/banners/banner6.png">
+            </a>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+<div class="container">
+    <img src="img/banners/blackFriday.gif" alt="" style="width: 100%;margin-top: 10px; margin-bottom: 10px;">
+    <div class="flexContain">
+
+        <div class="pricesRangeFilter dropdown">
+            <button class="dropbtn">Giá tiền</button>
+            <div class="dropdown-content"><a href="index.html?price=0-2000000&amp;star=3&amp;sort=rateCount-decrease">Dưới 2 triệu</a><a href="index.html?price=2000000-4000000&amp;star=3&amp;sort=rateCount-decrease">Từ 2 - 4 triệu</a><a href="index.html?price=4000000-7000000&amp;star=3&amp;sort=rateCount-decrease">Từ 4 - 7 triệu</a><a href="index.html?price=7000000-13000000&amp;star=3&amp;sort=rateCount-decrease">Từ 7 - 13 triệu</a><a href="index.html?price=13000000-0&amp;star=3&amp;sort=rateCount-decrease">Trên 13 triệu</a></div>
+        </div>
+
+        <div class="promosFilter dropdown">
+            <button class="dropbtn">Khuyến mãi</button>
+            <div class="dropdown-content"><a href="index.html?promo=giamgia&amp;star=3&amp;sort=rateCount-decrease">Giảm giá</a><a href="index.html?promo=tragop&amp;star=3&amp;sort=rateCount-decrease">Trả góp</a><a href="index.html?promo=moiramat&amp;star=3&amp;sort=rateCount-decrease">Mới ra mắt</a><a href="index.html?promo=giareonline&amp;star=3&amp;sort=rateCount-decrease">Giá rẻ online</a></div>
+        </div>
+
+        <div class="starFilter dropdown">
+            <button class="dropbtn">Số lượng sao</button>
+            <div class="dropdown-content"><a href="index.html?star=3&amp;sort=rateCount-decrease">Trên 2 sao</a><a href="index.html?star=4&amp;sort=rateCount-decrease">Trên 3 sao</a><a href="index.html?star=5&amp;sort=rateCount-decrease">Trên 4 sao</a></div>
+        </div>
+
+        <div class="sortFilter dropdown">
+            <button class="dropbtn">Sắp xếp</button>
+            <div class="dropdown-content"><a href="index.html?star=3&amp;sort=price-ascending">Giá tăng dần</a><a href="index.html?star=3&amp;sort=price-decrease">Giá giảm dần</a><a href="index.html?star=3&amp;sort=star-ascending">Sao tăng dần</a><a href="index.html?star=3&amp;sort=star-decrease">Sao giảm dần</a><a href="index.html?star=3&amp;sort=rateCount-ascending">Đánh giá tăng dần</a><a href="index.html?star=3&amp;sort=rateCount-decrease">Đánh giá giảm dần</a><a href="index.html?star=3&amp;sort=name-ascending">Tên A-Z</a><a href="index.html?star=3&amp;sort=name-decrease">Tên Z-A</a></div>
+        </div>
+
+    </div>
+    <div class="row tbl-sp">
+        <div class="sanPham col-lg-3 col-md-3 col-sm-6 col-12" th:each="vmo : ${vm.getObjectProductVM()}">
+            <a <a th:href="@{'/chi-tiet/'+${vmo.getId()}}">
+                <img th:src="@{${vmo.getMainImage()}}" alt="">
+                <h3 th:text="${vmo.getName()}"></h3>
+                <div class="price" th:if="${vmo.getDiscount() != null}">
+                    <strong th:text="${vmo.getPrice() * (1 - vmo.getDiscount())} "></strong><strong>$</strong>
+                    <span th:text="${vmo.getPrice()} "></span>
+                </div>
+                <div class="price" th:if="${vmo.getDiscount() == null}">
+                    <strong th:text="${vmo.getPrice()} "> </strong><strong>$</strong>
+                </div>
+                <div class="ratingresult">
+                    <div class="rateYo" th:if="${vmo.getTbRate() != null}" th:attr="data-rate=${vmo.getTbRate()}"> </div>
+                    <div class="rateYo" th:if="${vmo.getTbRate() == null}" th:attr="data-rate=0"> </div>
+                    <span th:if="${vmo.getSlRate() != null}">
+                         <span th: th:text="${vmo.getSlRate()} "></span><span> đánh giá</span>
+                    </span>
+                    <span th:if="${vmo.getSlRate() == null}">
+                         <span> 0 đánh giá</span>
+                    </span>
+
+                </div>
+                <label class="giamgia" th:if="${vmo.getDiscount() != null}">
+                    <i class="fa fa-bolt" ></i> <span>Giảm </span><span  th:text="${vmo.getPrice() - (vmo.getPrice() * (1 - vmo.getDiscount()))} "></span> <span>$</span>
+                </label>
+                    <button class="themvaogio" onclick="">
+                        Thêm vào giỏ
+                    </button>
+
+            </a>
+        </div>
+<!--        <nav style="margin-top: 50px" aria-label="..." th:if="${vm.getObjectProductVM().size()>0}">-->
+<!--            <ul class="pagination">-->
+<!--                <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">-->
+<!--                    <li class="page-item active" th:if="${page.number == i}" aria-current="page">-->
+<!--                        <a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item"  th:unless="${page.number == i}"><a class="page-link" th:text="${i+1}"-->
+<!--                                                                              th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))-->
+<!--                                                                                       +('&page='+i)-->
+<!--                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))-->
+<!--                                                                                       +(#httpServletRequest.getParameter('sortByPrice')==null?'':('&sortByPrice='+#httpServletRequest.getParameter('sortByPrice')))-->
+<!--                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}"></a></li>-->
+<!--                </th:block>-->
+<!--            </ul>-->
+<!--        </nav>-->
+
+    </div>
+
+</div>
+
+
+<div class="plc">
+
+    <section class="container">
+        <ul class="flexContain">
+            <li>Giao hàng nhanh chóng</li>
+            <li>Thanh toán linh hoạt: tiền mặt, visa / master, trả góp</li>
+            <li>Trải nghiệm sản phẩm tại nhà</li>
+            <li>Lỗi đổi tại nhà trong 1 ngày</li>
+            <li>Hỗ trợ suốt thời gian sử dụng.
+                <br>Hotline:
+                <a href="tel:12345678" style="color: #288ad6;">1234.5678</a>
+            </li>
+        </ul>
+    </section>
+</div>
+<div th:replace="fragments/footer :: footer_info"></div>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+
+<script th:src="@{/js/Jquery/Jquery.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script th:src="@{/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>
+<script th:src="@{/js/OwlCarousel2-2.3.4/dist/scrolls.js}"></script>
+<script th:src="@{/js/scroll.js}"></script>
+
 </body>
 </html>
