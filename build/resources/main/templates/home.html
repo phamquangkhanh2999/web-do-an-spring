@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="image/favicon.ico">
+    <link rel="shortcut icon"  th:href="@{/image/favicon.ico}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/js/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/js/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -83,7 +83,7 @@
     </div>
     <div class="row tbl-sp">
         <div class="sanPham col-lg-3 col-md-3 col-sm-6 col-12" th:each="vmo : ${vm.getObjectProductVM()}">
-            <a <a th:href="@{'/chi-tiet/'+${vmo.getId()}}">
+             <a th:href="@{'/chi-tiet/'+${vmo.getId()}}">
                 <img th:src="@{${vmo.getMainImage()}}" alt="">
                 <h3 th:text="${vmo.getName()}"></h3>
                 <div class="price" th:if="${vmo.getDiscount() != null}">

@@ -55,8 +55,6 @@
 
 #detail .product-images .main-img-slider figure a {
     cursor: pointer;
-    cursor: -webkit-zoom-in;
-    cursor: -moz-zoom-in;
     cursor: zoom-in;
 }
 

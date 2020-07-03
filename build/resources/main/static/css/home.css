@@ -41,7 +41,7 @@
     padding: 5px 10px 0px 10px;
 }
 .sanPham label.giamgia {
-
+    
     background-image: -webkit-linear-gradient(left, #ff9c00 0%, #ec1f1f 100%);
     background-image: -o-linear-gradient(left, #ff9c00 0%, #ec1f1f 100%);
     background-image: linear-gradient(90deg, #ff9c00 0%, #ec1f1f 100%);
@@ -50,7 +50,12 @@
     padding-left: 0;
     padding-right: 10px;
 }
-
+.tooltip {
+    position: absolute;
+    display: inline-block;
+    bottom: 5px;
+    right: 5px;
+}
 .sanPham a {
     display: block;
     position: relative;
@@ -108,16 +113,15 @@
 }
 .themvaogio {
     z-index: 20;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid #e3e7eb;
+    border-radius: 50%;
+    width: 1.5em;
     height: 1.5em;
+    font-size: 1.5em;
     color: rgb(163, 161, 161);
     background: none;
     transition-duration: .2s;
-    position: absolute;
-    right: 0;
-    bottom: 13px;
-    font-size: 12px;
+    cursor: pointer;
 }
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -257,12 +261,4 @@
 .owl-theme .owl-nav {
     /* margin-top: 10px; */
     height: 0px;
-}
-.rateYo svg{
-    width: 15px !important;
-    height: 15px !important;
-}
-.rateYo {
-    width: 80px !important;
-    display: inline-block;
 }
