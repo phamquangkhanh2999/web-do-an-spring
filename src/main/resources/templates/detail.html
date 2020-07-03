@@ -1,10 +1,318 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${vm.getProductVM().getName()}"></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon"  th:href="@{/image/favicon.ico}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chitiet.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/slick/slick.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/slick/slick-theme.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/star/fontawesome-stars.css}"/>
+
 </head>
 <body>
 
+<div th:replace="fragments/header :: header_info"></div>
+<div class="content-chitiet">
+    <div class="container">
+        <div class="row top-chitiet">
+            <div class="col-md-4 col-12">
+                <section id="detail">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 mx-auto">
+                                <!-- Product Images & Alternates -->
+                                <div class="product-images demo-gallery">
+                                    <!-- Begin Product Images Slider -->
+                                    <div class="main-img-slider">
+                                        <a data-fancybox="gallery"  th:href="${productImg.getLink()}" th:each=" productImg : ${vm.getProductVM().getProductImageList()}">
+                                            <img th:src="${productImg.getLink()}" class="img-fluid">
+                                        </a>
+                                    </div>
+                                    <!-- End Product Images Slider -->
+
+                                    <!-- Begin product thumb nav -->
+                                    <ul class="thumb-nav">
+                                        <li th:each=" productImg : ${vm.getProductVM().getProductImageList()}"><img th:src="${productImg.getLink()}"></li>
+                                    </ul>
+                                    <!-- End product thumb nav -->
+                                </div>
+                                <!-- End Product Images & Alternates -->
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+
+            <div class="col-md-8 col-12">
+                <div class="box-column-group">
+                    <div class="product-name">
+                        <h1 th:text="${vm.getProductVM().getName()}"></h1>
+                    </div>
+
+                    <div class="box-column-flex">
+                        <div class="box-left-right">
+                            <div class="product-info-order">
+                                <div class="box-title-product">
+                                    <input type="hidden" name="pricedetail" data-price="45990000" value="45990000">
+                                    <p class="giathuoc" style="color:teal">(Công ty)</p><strong class="specialprice"><span class="price">45.990.000 đ</span></strong><span class="oldprice"><span class="price">49.990.000&nbsp;₫</span></span>
+                                    <p class="is_vat"><i>(Giá đã bao gồm 10% VAT)</i></p>
+                                </div>
+                                <div class="box-color-product-best">
+
+                                    <div class="list-color-product">
+
+                                        <label class="count_color">Có <font th:text="${vm.getProductVM().getSizeColorVMList().size()}"></font> màu chọn: </label>
+                                        <span class="item-color" >
+                                                <span class="item-mau" th:each=" sizeColor : ${vm.getProductVM().getSizeColorVMList()}" th:text="${sizeColor.getColor()}" >  &nbsp;</span>
+
+
+                                            </span>
+                                    </div>
+
+                                    <div class="list-dd">
+
+
+                                    </div>
+
+
+                                    <div class="list-dd">
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="box-banner-services">
+                                </div>
+
+                                <div class="box-info-price">
+                                    <div class="box-icon-khuyenmai-group">
+                                        <a rel="nofollow" href="#" target="_blank">
+                                            <div class="box-icon-km box-icon-km-tragop"></div>
+                                        </a>
+                                        <a rel="nofollow" href="#" target="_blank">
+                                            <div class="box-icon-km box-icon-km-tcdm"></div>
+                                        </a>
+                                        <a rel="nofollow" href="#" target="_blank">
+                                            <div class="box-icon-km box-icon-km-baohanhtd"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-form-order">
+
+                                <div class="box-button button-mua-sp wid100">
+                                    <a rel="nofollow" class="button_checkout_brand buttoncart blue" href="#">
+                                        <span>Đặt mua sản phẩm</span>
+                                        <small>Nhận hàng tại shop hoặc giao hàng miễn phí</small>
+                                    </a>
+                                </div>
+                                <div class="box-button button-tragop wid48">
+                                    <a rel="nofollow" class="button_installment buttoncart yellow" href="#">
+                                        <span>Trả góp 0% qua thẻ</span>
+                                        <small>Visa, MasterCard, JCB</small>
+                                    </a>
+                                </div>
+                                <div class="box-button button-thucu wid48">
+                                    <!-- <a class="button_thucu buttoncart yellow" href="#quick_cu_doi_moi"> -->
+                                    <a rel="nofollow" class="button_installment buttoncart yellow" href="#">
+                                        <span>Trả góp tài chính<small>Đơn giản, duyệt qua điện thoại</small></span>
+                                    </a>
+                                </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="box-right-right">
+                            <div class="box-right-right-container">
+                                <div class="cuahang">
+                                    <i class="fa fa-globe" aria-hidden="true"></i> Cửa hàng
+                                </div>
+                                <div class="box-uu-dai1">
+                                    <ul>
+                                        <li class="icon-sheetv2"><img th:src="@{/image/hand.png}" class="icon-freecharge">Miễn phí charge thẻ dưới 10 triệu</li>
+                                        <li class="icon-sheetv2"><img th:src="@{/image/freeship.png}" class="icon-freecharge">Miễn phí giao hàng bán kính 10km</li>
+                                        <li class="icon-sheetv2"><img th:src="@{/image/card.png}" class="icon-freecharge">Thanh toán qua thẻ, trả góp tận nhà</li>
+                                        <li class="icon-sheetv2"><img th:src="@{/image/setup.png}" class="icon-freecharge">Cài đặt ứng dụng, phần mềm trọn đời</li>
+                                    </ul>
+                                </div>
+                                <div class="cuahang">Đánh giá sản phẩm </div>
+                                <div class="rate1">
+                                    <select id="example">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+
+                                    <button class="btn-rate">Đánh giá</button>
+                                </div>
+                            </div>
+
+
+
+                            <style>
+                                .box-uu-dai-suggest-product .pro-suggest:last-child {
+                                    border: none;
+                                }
+
+                                .box-uu-dai-suggest-product .pro-suggest {
+                                    display: flex;
+                                    align-items: center;
+                                    line-height: 1.3;
+                                    border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+                                }
+                            </style>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row middle-detail">
+            <div class="col-md-8 col-12">
+                <div class="card">
+                    <div class="cuahang">
+                        Thông Tin Sản Phẩm
+                    </div>
+                    <div class="card-text-paragraph">
+                        <p th:text="${vm.getProductVM().getShortDesc()}">
+
+                        </p>
+                        <div class="moreParagraphs" th:utext="${vm.getProductVM().getDescription()}">
+
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="more">
+                        <button id="loadMore">
+                            Read more
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!--TSKT-->
+            <div class="col-md-4 col-12">
+
+                <div class="box-thong-so-kt">
+                    <div class="box-title-thong-so ">Thông số kỹ thuật</div>
+                    <div class="box-info-tskt">
+                        <ul>
+                            <li>
+                                <div class="title-info-tskt"  >
+                                    Màn hình:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getScreen()}" >
+                                   </div>
+                            </li>
+
+                            <li>
+                                <div class="title-info-tskt">
+                                    Model:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getModel()}">
+                                     </div>
+                            </li>
+
+                            <li>
+                                <div class="title-info-tskt">
+                                    Độ phân giải:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getResolution()}">
+                                     </div>
+                            </li>
+                            <li>
+                                <div class="title-info-tskt">
+                                    CPU:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getCpu()}">
+                                     </div>
+                            </li>
+                            <li>
+                                <div class="title-info-tskt">
+                                    RAM:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getRam()}">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title-info-tskt">
+                                    Camera:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getCamera()}">
+                                   </div>
+                            </li>
+
+                            <li>
+                                <div class="title-info-tskt">
+                                    Pin:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getPin()}">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="title-info-tskt">
+                                    Other:
+                                </div>
+                                <div class="content-info-tskt" th:text="${vm.getProductVM().getOther()}">
+                                </div>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <!--End TSKT-->
+
+        </div>
+        <!--End row midle details-->
+    </div>
+    <!--End Content chitiet-->
+</div>
+</br>
+
+
+
+<div th:replace="fragments/footer :: footer_info"></div>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+
+<script th:src="@{/js/Jquery/Jquery.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<script th:src="@{/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>
+<script th:src="@{/js/OwlCarousel2-2.3.4/dist/scrolls.js}"></script>
+<script th:src="@{/js/slick/slick.min.js}"></script>
+<script th:src="@{/js/star/jquery.barrating.min.js}"></script>
+<script th:src="@{/js/scroll.js}"></script>
+
 </body>
-</html>
+
+
