@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
 </head>
@@ -16,12 +16,12 @@
                 </div> <!-- End Social Topnav -->
 
                 <ul class="top-nav-quicklink flexContain">
-                    <li><a href="index.html"><i class="fa fa-home"></i> Trang chủ</a></li>
-                    <li><a href="tintuc.html"><i class="fa fa-newspaper-o"></i> Tin tức</a></li>
-                    <li><a href="tuyendung.html"><i class="fa fa-handshake-o"></i> Tuyển dụng</a></li>
-                    <li><a href="gioithieu.html"><i class="fa fa-info-circle"></i> Giới thiệu</a></li>
-                    <li><a href="trungtambaohanh.html"><i class="fa fa-wrench"></i> Bảo hành</a></li>
-                    <li><a href="lienhe.html"><i class="fa fa-phone"></i> Liên hệ</a></li>
+                    <li><a th:href="@{/}"><i class="fa fa-home"></i> Trang chủ</a></li>
+                    <li><a th:href="@{/tin-tuc}"><i class="fa fa-newspaper-o"></i> Tin tức</a></li>
+                    <li><a th:href="@{/tuyen-dung}"><i class="fa fa-handshake-o"></i> Tuyển dụng</a></li>
+                    <li><a th:href="@{/gioi-thieu}"><i class="fa fa-info-circle"></i> Giới thiệu</a></li>
+                    <li><a th:href="@{/bao-hanh}"><i class="fa fa-wrench"></i> Bảo hành</a></li>
+                    <li><a th:href="@{/lien-he}"><i class="fa fa-phone"></i> Liên hệ</a></li>
                 </ul> <!-- End Quick link -->
             </section><!-- End Section -->
         </div>
@@ -30,7 +30,7 @@
         <div class="header group">
             <div class="container header1">
                 <div class="logo">
-                    <a href="index.html">
+                    <a th:href="@{/}">
                         <img th:src="@{/image/logo.png}" alt="Trang chủ Smartphone Store" title="Trang chủ Smartphone Store">
                     </a>
                 </div> <!-- End Logo -->
@@ -46,24 +46,35 @@
                                 </button>
                             </div>
                         </form> <!-- End Form search -->
-                        <div class="tags">
-                            <strong>Từ khóa: </strong>
-                            <a href="index.html?search=Samsung">Samsung</a>
-                            <a href="index.html?search=iPhone">iPhone</a>
-                            <a href="index.html?search=Huawei">Huawei</a>
-                            <a href="index.html?search=Oppo">Oppo</a>
-                            <a href="index.html?search=Mobi">Mobi</a></div>
+
                     </div> <!-- End Search header -->
 
                     <div class="tools-member">
                         <div class="member">
-                            <a onclick="checkTaiKhoan()">
-                                <i class="fa fa-user"></i>
-                                Tài khoản
-                            </a>
-                            <div class="menuMember hide">
-                                <a href="nguoidung.html">Trang người dùng</a>
-                                <a onclick="">Đăng xuất</a>
+                            <div sec:authorize="isAuthenticated()">
+                                <div class="dropdown">
+                                    <button th:inline="text" style="margin-right: 10px" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        [[${#httpServletRequest.remoteUser}]]
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" th:href="@{/user/detail}">User Detail</a>
+                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div sec:authorize="isAnonymous()">
+                                <div class="dropdown">
+                                    <button th:inline="text" style="margin-right: 10px" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Login
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" th:href="@{/login}">Login</a>
+                                    </div>
+                                </div>
                             </div>
 
                         </div> <!-- End Member -->

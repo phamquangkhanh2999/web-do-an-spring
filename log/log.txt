@@ -2,3 +2,8 @@
 2020-Jun-24 15:46:47 PM [http-nio-8080-exec-2] ERROR application.controller.api.ProductAPIController - could not extract ResultSet
 2020-Jun-24 15:48:18 PM [http-nio-8080-exec-1] ERROR application.controller.api.ProductAPIController - could not extract ResultSet
 2020-Jun-24 15:49:49 PM [http-nio-8080-exec-6] ERROR application.controller.api.CategoryAPIController - could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2020-Jul-13 09:13:52 AM [http-nio-8080-exec-6] INFO  application.data.service.UserService - Start registerNewUser
+2020-Jul-13 09:31:00 AM [http-nio-8080-exec-6] INFO  application.data.service.UserService - Start registerNewUser
+2020-Jul-13 09:31:20 AM [http-nio-8080-exec-1] INFO  application.data.service.UserService - Start registerNewUser
+2020-Jul-13 09:31:32 AM [http-nio-8080-exec-6] INFO  application.data.service.UserService - Start registerNewUser
+2020-Jul-13 09:31:43 AM [http-nio-8080-exec-10] INFO  application.data.service.UserService - Start registerNewUser

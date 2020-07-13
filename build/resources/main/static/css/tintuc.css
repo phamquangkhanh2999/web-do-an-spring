@@ -27,9 +27,16 @@
     font-weight: 100;
     font-style: italic;
     color: gray;
+    display: inline-block;
 }
 
 .header {
     position: relative;
     background: white;
+}
+.tintuc-info span{
+    font-weight: 100;
+    font-style: italic;
+    color: gray;
+    padding-left: 50px;
 }

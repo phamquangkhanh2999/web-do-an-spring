@@ -4,7 +4,7 @@ package application.model.dto;
 public class RateDTO {
 
     private int id;
-    private String star;
+    private int star;
     private String userName;
     private int productId;
 
@@ -16,11 +16,11 @@ public class RateDTO {
         this.id = id;
     }
 
-    public String getStar() {
+    public int getStar() {
         return star;
     }
 
-    public void setStar(String star) {
+    public void setStar(int star) {
         this.star = star;
     }
 

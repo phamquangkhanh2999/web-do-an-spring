@@ -11,7 +11,7 @@ public class Rate {
     private int id;
 
     @Column(name = "star")
-    private String star;
+    private int star;
     @Column(name = "username", insertable = false, updatable = false)
     private String userName;
 
@@ -54,11 +54,11 @@ public class Rate {
         this.id = id;
     }
 
-    public String getStar() {
+    public int getStar() {
         return star;
     }
 
-    public void setStar(String star) {
+    public void setStar(int star) {
         this.star = star;
     }
 

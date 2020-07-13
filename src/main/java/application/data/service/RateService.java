@@ -1,6 +1,8 @@
 package application.data.service;
 
+import application.data.model.Product;
 import application.data.model.Rate;
+import application.data.model.SizeColor;
 import application.data.repository.RateRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -58,4 +60,8 @@ public class RateService {
         }
         return false;
     }
+    public List<Integer> getRateByProduct(Product product){
+        return rateRepository.getRateByProduct(product);
+    }
+
 }

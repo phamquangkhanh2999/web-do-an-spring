@@ -1,5 +1,6 @@
 package application.data.service;
 
+import application.data.model.Product;
 import application.data.model.SizeColor;
 import application.data.repository.SizeColorRepository;
 import org.apache.logging.log4j.LogManager;
@@ -56,5 +57,9 @@ public class SizeColorService {
             logger.error(e.getMessage());
         }
         return false;
+    }
+
+    public List<SizeColor> getProductByColor(int productId, String color){
+        return sizeColorRepository.getProductByColor(productId,color);
     }
 }
