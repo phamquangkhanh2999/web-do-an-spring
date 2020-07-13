@@ -186,4 +186,6 @@ public class ProductVM {
     public void setRateVMList(List<RateVM> rateVMList) {
         this.rateVMList = rateVMList;
     }
+
+
 }

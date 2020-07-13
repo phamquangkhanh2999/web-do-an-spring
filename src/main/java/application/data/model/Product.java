@@ -89,6 +89,25 @@ public class Product {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private List<ProductGuarantee> guaranteeArrayList = new ArrayList<>();
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "promotion")
+	private List<ProductPromotion> listProductPromotions = new ArrayList<>();
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public List<ProductPromotion> getListProductPromotions() {
+		return listProductPromotions;
+	}
+
+	public void setListProductPromotions(List<ProductPromotion> listProductPromotions) {
+		this.listProductPromotions = listProductPromotions;
+	}
+
 	public Product() {
 	}
 

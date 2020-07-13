@@ -1,6 +1,7 @@
 package application.data.service;
 
 import application.data.model.ProductPromotion;
+import application.data.model.SizeColor;
 import application.data.repository.ProductPromotionRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,5 +58,8 @@ public class ProductPromotionService {
             logger.error(e.getMessage());
         }
         return false;
+    }
+    public List<ProductPromotion> getProductByPromotion(int productId){
+        return productPromotionRepository.getProductByPromotion(productId);
     }
 }

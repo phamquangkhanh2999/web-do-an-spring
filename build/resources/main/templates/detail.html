@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,11 +17,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-
-    <link rel="stylesheet" type="text/css" th:href="@{/css/chitiet.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/js/slick/slick.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/js/slick/slick-theme.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/js/star/fontawesome-stars.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/chitiet.css}"/>
 
 </head>
 <body>
@@ -70,9 +69,14 @@
                     <div class="box-column-flex">
                         <div class="box-left-right">
                             <div class="product-info-order">
-                                <div class="box-title-product">
-                                    <input type="hidden" name="pricedetail" data-price="45990000" value="45990000">
-                                    <p class="giathuoc" style="color:teal">(Công ty)</p><strong class="specialprice"><span class="price">45.990.000 đ</span></strong><span class="oldprice"><span class="price">49.990.000&nbsp;₫</span></span>
+                                <div class="box-title-product" th:if="${vm.getProductPriceVM().getDiscount()>0}">
+
+                                    <p class="giathuoc" style="color:teal">(Công ty)</p><strong class="specialprice"><span class="price" th:text="${vm.getProductPriceVM().getDiscount()}+' $'"></span></strong><span class="oldprice"><span class="price" th:text="${vm.getProductPriceVM().getPrice()}+' $'"></span></span>
+                                    <p class="is_vat"><i>(Giá đã bao gồm 10% VAT)</i></p>
+                                </div>
+                                <div class="box-title-product" th:if="${vm.getProductPriceVM().getDiscount()<=0}">
+
+                                    <p class="giathuoc" style="color:teal">(Công ty)</p><strong class="specialprice"><span class="price" th:text="${vm.getProductPriceVM().getPrice()}+' $'"></span></strong>
                                     <p class="is_vat"><i>(Giá đã bao gồm 10% VAT)</i></p>
                                 </div>
                                 <div class="box-color-product-best">
@@ -105,13 +109,13 @@
 
                                 <div class="box-info-price">
                                     <div class="box-icon-khuyenmai-group">
-                                        <a rel="nofollow" href="#" target="_blank">
+                                        <a rel="nofollow" href="#" >
                                             <div class="box-icon-km box-icon-km-tragop"></div>
                                         </a>
-                                        <a rel="nofollow" href="#" target="_blank">
+                                        <a rel="nofollow" href="#">
                                             <div class="box-icon-km box-icon-km-tcdm"></div>
                                         </a>
-                                        <a rel="nofollow" href="#" target="_blank">
+                                        <a rel="nofollow" href="#" >
                                             <div class="box-icon-km box-icon-km-baohanhtd"></div>
                                         </a>
                                     </div>
@@ -155,17 +159,19 @@
                                         <li class="icon-sheetv2"><img th:src="@{/image/setup.png}" class="icon-freecharge">Cài đặt ứng dụng, phần mềm trọn đời</li>
                                     </ul>
                                 </div>
-                                <div class="cuahang">Đánh giá sản phẩm </div>
-                                <div class="rate1">
-                                    <select id="example">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
+                                <div sec:authorize="isAuthenticated()">
+                                    <div  class="cuahang">Đánh giá sản phẩm </div>
+                                    <div class="rate1">
+                                        <select id="example">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
 
-                                    <button class="btn-rate">Đánh giá</button>
+                                        <button class="btn-rate">Đánh giá</button>
+                                    </div>
                                 </div>
                             </div>
 
@@ -308,10 +314,9 @@
 <script th:src="@{/js/Jquery/Jquery.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script th:src="@{/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>
-<script th:src="@{/js/OwlCarousel2-2.3.4/dist/scrolls.js}"></script>
 <script th:src="@{/js/slick/slick.min.js}"></script>
 <script th:src="@{/js/star/jquery.barrating.min.js}"></script>
-<script th:src="@{/js/scroll.js}"></script>
+<script th:src="@{/js/detail.js}"></script>
 
 </body>
 

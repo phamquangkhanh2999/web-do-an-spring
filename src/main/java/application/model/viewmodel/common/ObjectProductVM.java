@@ -1,7 +1,5 @@
 package application.model.viewmodel.common;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 
 public class ObjectProductVM {
@@ -16,9 +14,8 @@ public class ObjectProductVM {
     private Double discount;
     private Date startDate;
     private Date endDate;
-
-    private BigInteger slRate;
-    private BigDecimal tbRate;
+    private int slRate;
+    private Double tbRate;
     private int categoryId;
 
     public ObjectProductVM() {
@@ -112,19 +109,19 @@ public class ObjectProductVM {
         this.endDate = endDate;
     }
 
-    public BigInteger getSlRate() {
+    public int getSlRate() {
         return slRate;
     }
 
-    public void setSlRate(BigInteger slRate) {
+    public void setSlRate(int slRate) {
         this.slRate = slRate;
     }
 
-    public BigDecimal getTbRate() {
+    public Double getTbRate() {
         return tbRate;
     }
 
-    public void setTbRate(BigDecimal tbRate) {
+    public void setTbRate(Double tbRate) {
         this.tbRate = tbRate;
     }
 }

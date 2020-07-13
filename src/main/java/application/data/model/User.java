@@ -32,6 +32,9 @@ public class User {
 	
 	@Column(name="address")
 	private String address;
+
+	 @Column(name="password_hash")
+	 private String passwordHash;
 	
 	@Transient
 	private String password;
@@ -145,5 +148,11 @@ public class User {
 		this.rateList = rateList;
 	}
 
+	public String getPasswordHash() {
+		return passwordHash;
+	}
 
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
 }

@@ -77,15 +77,20 @@
 
         <div class="sortFilter dropdown">
             <button class="dropbtn">Sắp xếp</button>
-            <div class="dropdown-content"><a href="index.html?star=3&amp;sort=price-ascending">Giá tăng dần</a><a href="index.html?star=3&amp;sort=price-decrease">Giá giảm dần</a><a href="index.html?star=3&amp;sort=star-ascending">Sao tăng dần</a><a href="index.html?star=3&amp;sort=star-decrease">Sao giảm dần</a><a href="index.html?star=3&amp;sort=rateCount-ascending">Đánh giá tăng dần</a><a href="index.html?star=3&amp;sort=rateCount-decrease">Đánh giá giảm dần</a><a href="index.html?star=3&amp;sort=name-ascending">Tên A-Z</a><a href="index.html?star=3&amp;sort=name-decrease">Tên Z-A</a></div>
+            <div class="dropdown-content"><a th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))
+                                                                                       +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +('&sortByPrice=ASC')
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Giá tăng dần</a>
+                <a href="index.html?star=3&amp;sort=price-decrease">Giá giảm dần</a><a href="index.html?star=3&amp;sort=star-ascending">Sao tăng dần</a><a href="index.html?star=3&amp;sort=star-decrease">Sao giảm dần</a><a href="index.html?star=3&amp;sort=rateCount-ascending">Đánh giá tăng dần</a><a href="index.html?star=3&amp;sort=rateCount-decrease">Đánh giá giảm dần</a><a href="index.html?star=3&amp;sort=name-ascending">Tên A-Z</a><a href="index.html?star=3&amp;sort=name-decrease">Tên Z-A</a></div>
         </div>
 
     </div>
     <div class="row tbl-sp">
         <div class="sanPham col-lg-3 col-md-3 col-sm-6 col-12" th:each="vmo : ${vm.getObjectProductVM()}">
-             <a th:href="@{'/chi-tiet/'+${vmo.getId()}}">
-                <img th:src="@{${vmo.getMainImage()}}" alt="">
-                <h3 th:text="${vmo.getName()}"></h3>
+            <a>
+                <a th:href="@{'/chi-tiet/'+${vmo.getId()}+'/'+${vmo.getColor()}}"> <img th:src="@{${vmo.getMainImage()}}" alt=""></a>
+                <a th:href="@{'/chi-tiet/'+${vmo.getId()}+'/'+${vmo.getColor()}}"><h3 th:text="${vmo.getName()}"></h3></a>
                 <div class="price" th:if="${vmo.getDiscount() != null}">
                     <strong th:text="${vmo.getPrice() * (1 - vmo.getDiscount())} "></strong><strong>$</strong>
                     <span th:text="${vmo.getPrice()} "></span>
@@ -97,7 +102,7 @@
                     <div class="rateYo" th:if="${vmo.getTbRate() != null}" th:attr="data-rate=${vmo.getTbRate()}"> </div>
                     <div class="rateYo" th:if="${vmo.getTbRate() == null}" th:attr="data-rate=0"> </div>
                     <span th:if="${vmo.getSlRate() != null}">
-                         <span th: th:text="${vmo.getSlRate()} "></span><span> đánh giá</span>
+                         <span th:text="${vmo.getSlRate()} "></span><span> đánh giá</span>
                     </span>
                     <span th:if="${vmo.getSlRate() == null}">
                          <span> 0 đánh giá</span>
@@ -107,27 +112,26 @@
                 <label class="giamgia" th:if="${vmo.getDiscount() != null}">
                     <i class="fa fa-bolt" ></i> <span>Giảm </span><span  th:text="${vmo.getPrice() - (vmo.getPrice() * (1 - vmo.getDiscount()))} "></span> <span>$</span>
                 </label>
-                    <button class="themvaogio" onclick="">
-                        Thêm vào giỏ
+                    <button class="themvaogio" onclick="" title="Thêm vào giỏ"> <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
 
             </a>
         </div>
-<!--        <nav style="margin-top: 50px" aria-label="..." th:if="${vm.getObjectProductVM().size()>0}">-->
-<!--            <ul class="pagination">-->
-<!--                <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">-->
-<!--                    <li class="page-item active" th:if="${page.number == i}" aria-current="page">-->
-<!--                        <a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>-->
-<!--                    </li>-->
-<!--                    <li class="page-item"  th:unless="${page.number == i}"><a class="page-link" th:text="${i+1}"-->
-<!--                                                                              th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))-->
-<!--                                                                                       +('&page='+i)-->
-<!--                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))-->
-<!--                                                                                       +(#httpServletRequest.getParameter('sortByPrice')==null?'':('&sortByPrice='+#httpServletRequest.getParameter('sortByPrice')))-->
-<!--                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}"></a></li>-->
-<!--                </th:block>-->
-<!--            </ul>-->
-<!--        </nav>-->
+        <nav style="margin-top: 50px" aria-label="..." th:if="${vm.getObjectProductVM().size()>0}">
+            <ul class="pagination">
+                <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                    <li class="page-item active" th:if="${page.number == i}" aria-current="page">
+                        <a class="page-link" th:href="${''}" th:text="${i+1}"><span class="sr-only"></span></a>
+                    </li>
+                    <li class="page-item"  th:unless="${page.number == i}"><a class="page-link" th:text="${i+1}"
+                                                                              th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))
+                                                                                       +('&page='+i)
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +(#httpServletRequest.getParameter('sortByPrice')==null?'':('&sortByPrice='+#httpServletRequest.getParameter('sortByPrice')))
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}"></a></li>
+                </th:block>
+            </ul>
+        </nav>
 
     </div>
 

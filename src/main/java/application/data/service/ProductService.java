@@ -71,8 +71,8 @@ public class ProductService {
         return productRepository.getTotalProducts();
     }
 
-    public  List<Object[]> getProductByPromotion(){
-        return productRepository.getProductByPromotion();
+    public Page<Product> getListProductByCategoryOrProductNameContaining(Pageable pageable, Integer categoryId, String productName){
+        return productRepository.getListProductByCategoryOrProductNameContaining(pageable,categoryId,productName);
     }
 
 

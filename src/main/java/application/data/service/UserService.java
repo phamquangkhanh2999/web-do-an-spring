@@ -88,7 +88,7 @@ public class UserService {
             }
 
             // hash pass
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setPasswordHash(passwordEncoder.encode(user.getPassword()));
             user.setCreateDate(new Date());
 
             // save user
