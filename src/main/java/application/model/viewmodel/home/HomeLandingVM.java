@@ -15,6 +15,7 @@ public class HomeLandingVM {
     private List<ProductPriceVM> productPriceVMList;
 
 
+
     public String getKeyWord() {
         return keyWord;
     }

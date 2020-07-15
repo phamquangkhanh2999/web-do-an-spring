@@ -81,8 +81,12 @@
                                                                                        +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
                                                                                        +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
                                                                                        +('&sortByPrice=ASC')
-                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Giá tăng dần</a>
-                <a href="index.html?star=3&amp;sort=price-decrease">Giá giảm dần</a><a href="index.html?star=3&amp;sort=star-ascending">Sao tăng dần</a><a href="index.html?star=3&amp;sort=star-decrease">Sao giảm dần</a><a href="index.html?star=3&amp;sort=rateCount-ascending">Đánh giá tăng dần</a><a href="index.html?star=3&amp;sort=rateCount-decrease">Đánh giá giảm dần</a><a href="index.html?star=3&amp;sort=name-ascending">Tên A-Z</a><a href="index.html?star=3&amp;sort=name-decrease">Tên Z-A</a></div>
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Tên A-Z</a>
+                <a th:href="${'?'+(#httpServletRequest.getParameter('categoryId')==null?'':('&categoryId='+#httpServletRequest.getParameter('categoryId')))
+                                                                                       +(#httpServletRequest.getParameter('page')==null?'':('&page='+#httpServletRequest.getParameter('page')))
+                                                                                       +(#httpServletRequest.getParameter('size')==null?'':('&size='+#httpServletRequest.getParameter('size')))
+                                                                                       +('&sortByPrice=DESC')
+                                                                                       +(#httpServletRequest.getParameter('name')==null?'':('&name='+#httpServletRequest.getParameter('name')))}">Tên Z-A</a><a href="index.html?star=3&amp;sort=name-ascending">Giá tăng dần</a><a href="index.html?star=3&amp;sort=name-decrease">Giá giảm dần</a></div>
         </div>
 
     </div>

@@ -15,7 +15,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name="username")
+	@Column(name="username",unique=true)
 	private String userName;
 	
 	@Column(name="email")
@@ -45,8 +45,6 @@ public class User {
 	@Column(name="create_date")
 	private Date createDate;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private List<Rate> rateList = new ArrayList<>();
 
 	public User() {
 	}
@@ -140,13 +138,6 @@ public class User {
 		this.createDate = createDate;
 	}
 
-	public List<Rate> getRateList() {
-		return rateList;
-	}
-
-	public void setRateList(List<Rate> rateList) {
-		this.rateList = rateList;
-	}
 
 	public String getPasswordHash() {
 		return passwordHash;

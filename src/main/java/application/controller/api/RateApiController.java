@@ -1,6 +1,8 @@
 package application.controller.api;
 
+import application.data.model.Product;
 import application.data.model.Rate;
+import application.data.model.User;
 import application.data.service.ProductService;
 import application.data.service.RateService;
 import application.data.service.UserService;
@@ -11,6 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/rate")
@@ -32,11 +36,11 @@ public class RateApiController {
         try {
             Rate rate = new Rate();
             rate.setStar(dto.getStar());
-            rate.setUser(userService.findUserByUsername(dto.getUserName()));
+            rate.setUserName(dto.getUserName());
             rate.setProduct(productService.findOne(dto.getProductId()));
             rateService.addNewRate(rate);
             result.setData(rate.getId());
-            result.setMessage("Save product image successfully: " + rate.getId());
+            result.setMessage("Save Rate successfully"+ rate.getId());
             result.setSuccess(true);
         } catch (Exception e) {
             result.setSuccess(false);
@@ -45,19 +49,33 @@ public class RateApiController {
         return result;
     }
 
-    @PostMapping("/update/{rateId}")
-    public BaseApiResult updateRate(@PathVariable int rateId,
-                                        @RequestBody RateDTO dto) {
+
+    @PostMapping(value = "/update")
+    public BaseApiResult updateRate(@RequestBody RateDTO dto) {
         BaseApiResult result = new BaseApiResult();
 
         try {
-            Rate rate = rateService.findOne(rateId);
-            rate.setStar(dto.getStar());
-            rate.setUser(userService.findUserByUsername(dto.getUserName()));
-            rate.setProduct(productService.findOne(dto.getProductId()));
-            rateService.updateRate(rate);
-            result.setSuccess(true);
-            result.setMessage("Update product image successfully");
+                Product product = productService.findOne(dto.getProductId());
+                Rate rate = rateService.findStarByProductAndUserName(product,dto.getUserName());
+                if (rate != null){
+                    rate.setStar(dto.getStar());
+                    rate.setUserName(dto.getUserName());
+                    rate.setProduct(product);
+                    rateService.updateRate(rate);
+                    result.setSuccess(true);
+                    result.setMessage("Update rate successfully");
+
+                } else {
+                    Rate rate1 = new Rate();
+                    rate1.setStar(dto.getStar());
+                    rate1.setUserName(dto.getUserName());
+                    rate1.setProduct(product);
+                    rateService.addNewRate(rate1);
+                    result.setSuccess(true);
+                    result.setMessage("Update rate successfully");
+                }
+
+
         } catch (Exception e) {
             result.setSuccess(false);
             result.setMessage(e.getMessage());

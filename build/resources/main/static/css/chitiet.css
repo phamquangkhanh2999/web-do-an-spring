@@ -563,3 +563,16 @@ a {
     margin-left: 5px;
     font-size: 14px;
 }
+.item-mau{
+    padding: 5px;
+    font-weight: 600;
+    color: #8a8787;
+    cursor: pointer;
+}
+.active {
+    background-color: #3a3a3a;
+    color: white !important;
+}
+.item-mau:hover {
+    text-decoration: none;
+}

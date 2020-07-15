@@ -1,4 +1,6 @@
 // Main/Product image slider for product page
+
+
 $('#detail .main-img-slider').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -39,8 +41,11 @@ $('.main-img-slider').on('afterChange', function(event, slick, currentSlide, nex
 });
 
 $(function() {
-    $('#example').barrating({
-        theme: 'fontawesome-stars'
+    var rateNumber = $('#rate-product').data("rate");
+    $('#rate-product').val(rateNumber);
+    $('#rate-product').barrating({
+        theme: 'fontawesome-stars',
+        initialRating: rateNumber
     });
 });
 /* chi tiet noi dung */
@@ -56,3 +61,45 @@ $("#loadMore").on("click", function() {
 
     $(".moreParagraphs").slideToggle(500);
 });
+
+$('.btn-rate').on("click",function () {
+    dataRate = {};
+    var star =  $("#rate-product").val();
+    var userName = $("#dropdownMenuButton").text().trim();
+    var productId =  $(this).data("product-id");
+    dataRate.star = star;
+    dataRate.productId = productId;
+    dataRate.userName = userName;
+    var linkPost = "/api/rate/update";
+    axios.post(linkPost, dataRate).then(function(res){
+        if(res.data.success) {
+            location.reload();
+        } else {
+            swal(
+                'Fail',
+                res.data.message,
+                'error'
+            ).then(function() {
+                location.reload();
+            });
+        }
+    }, function(err){
+
+        swal(
+            'Error',
+            'Fail',
+            'error'
+        );
+    });
+
+});
+$(".item-mau").each(function () {
+    var color1 =  $(this).text();
+    var color2 =  $(this).data("color");
+    if(color1 === color2){
+        $(this).addClass("active");
+    }
+})
+
+
+

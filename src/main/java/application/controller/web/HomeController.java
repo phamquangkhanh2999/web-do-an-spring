@@ -58,9 +58,9 @@ public class HomeController extends BaseController {
         Sort sortable = new Sort(Sort.Direction.ASC,"id");
         if(sort != null) {
             if (sort.equals("ASC")) {
-                sortable = new Sort(Sort.Direction.ASC,"price");
+                sortable = new Sort(Sort.Direction.ASC,"name");
             }else {
-                sortable = new Sort(Sort.Direction.DESC,"price");
+                sortable = new Sort(Sort.Direction.DESC,"name");
             }
         }
 
