@@ -20,8 +20,40 @@
                     <li><a th:href="@{/tin-tuc}"><i class="fa fa-newspaper-o"></i> Tin tức</a></li>
                     <li><a th:href="@{/tuyen-dung}"><i class="fa fa-handshake-o"></i> Tuyển dụng</a></li>
                     <li><a th:href="@{/gioi-thieu}"><i class="fa fa-info-circle"></i> Giới thiệu</a></li>
-                    <li><a th:href="@{/bao-hanh}"><i class="fa fa-wrench"></i> Bảo hành</a></li>
-                    <li><a th:href="@{/lien-he}"><i class="fa fa-phone"></i> Liên hệ</a></li>
+                    <li><a th:href="@{/lien-he}"><i class="fa fa-phone"></i> Bảo hành</a></li>
+                    <li>
+                        <div class="member">
+                            <div sec:authorize="isAuthenticated()">
+
+                                <div class="dropdown">
+
+                                    <button th:inline="text" style="margin-right: 10px" class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user"></i>   [[${#httpServletRequest.remoteUser}]]
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" th:href="@{/user/detail}">Thông tin cá nhân</a>
+                                        <a class="dropdown-item" th:href="@{/order/history}">Lịch sử mua hàng</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" th:href="@{/logout}">Thoát</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div sec:authorize="isAnonymous()">
+
+                                <div class="dropdown">
+
+                                    <button th:inline="text" style="margin-right: 10px" class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user"></i> Đăng Nhập
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" th:href="@{/order/history}">Lịch sử mua hàng</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" th:href="@{/login}">Đăng Nhập</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- End Member -->
                 </ul> <!-- End Quick link -->
             </section><!-- End Section -->
         </div>
@@ -49,35 +81,7 @@
 
                     </div> <!-- End Search header -->
 
-                    <div class="tools-member">
-                        <div class="member">
-                            <div sec:authorize="isAuthenticated()">
-                                <div class="dropdown">
-                                    <button th:inline="text" style="margin-right: 10px" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        [[${#httpServletRequest.remoteUser}]]
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" th:href="@{/user/detail}">User Detail</a>
-                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div sec:authorize="isAnonymous()">
-                                <div class="dropdown">
-                                    <button th:inline="text" style="margin-right: 10px" class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Login
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" th:href="@{/order/history}">Order History</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" th:href="@{/login}">Login</a>
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div> <!-- End Member -->
 
                         <div class="cart">
                             <a href="giohang.html">
