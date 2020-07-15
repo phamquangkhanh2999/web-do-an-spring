@@ -1,44 +1,40 @@
-// Main/Product image slider for product page
-
-
-$('#detail .main-img-slider').slick({
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    infinite: true,
-    arrows: true,
-    fade: true,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    speed: 300,
-    lazyLoad: 'ondemand',
-    asNavFor: '.thumb-nav',
-    prevArrow: '<div class="slick-prev"><i class="i-prev"></i><span class="sr-only sr-only-focusable">Previous</span></div>',
-    nextArrow: '<div class="slick-next"><i class="i-next"></i><span class="sr-only sr-only-focusable">Next</span></div>'
+var galleryThumbs = new Swiper('.gallery-thumbs', {
+    spaceBetween: 5,
+    freeMode: true,
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
+    breakpoints: {
+        0: {
+            slidesPerView: 3,
+        },
+        992: {
+            slidesPerView: 4,
+        },
+    }
 });
-// Thumbnail/alternates slider for product page
-$('.thumb-nav').slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    infinite: true,
-    centerPadding: '0px',
-    asNavFor: '.main-img-slider',
-    dots: false,
-    centerMode: false,
-    draggable: true,
-    speed: 200,
-    focusOnSelect: true,
-    prevArrow: '<div class="slick-prev"><i class="i-prev"></i><span class="sr-only sr-only-focusable">Previous</span></div>',
-    nextArrow: '<div class="slick-next"><i class="i-next"></i><span class="sr-only sr-only-focusable">Next</span></div>'
+var galleryTop = new Swiper('.gallery-top', {
+    spaceBetween: 10,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    thumbs: {
+        swiper: galleryThumbs
+    },
 });
+// change carousel item height
+// gallery-top
+let productCarouselTopWidth = $('.gallery-top').outerWidth();
+$('.gallery-top').css('height', productCarouselTopWidth);
+
+// gallery-thumbs
+let productCarouselThumbsItemWith = $('.gallery-thumbs .swiper-slide').outerWidth();
+$('.gallery-thumbs').css('height', productCarouselThumbsItemWith);
+
+// activation zoom plugin
+var $easyzoom = $('.easyzoom').easyZoom();
 
 
-//keeps thumbnails active when changing main image, via mouse/touch drag/swipe
-$('.main-img-slider').on('afterChange', function(event, slick, currentSlide, nextSlide) {
-    //remove all active class
-    $('.thumb-nav .slick-slide').removeClass('slick-current');
-    //set active class for current slide
-    $('.thumb-nav .slick-slide:not(.slick-cloned)').eq(currentSlide).addClass('slick-current');
-});
 
 $(function() {
     var rateNumber = $('#rate-product').data("rate");
@@ -49,17 +45,12 @@ $(function() {
     });
 });
 /* chi tiet noi dung */
-$("#loadMore").on("click", function() {
-    $(".overlay").toggleClass("display-none");
-
-    $("#loadMore").toggleClass("read-less");
-    if ($("#loadMore").hasClass("read-less")) {
-        $("#loadMore").text("Read less");
-    } else {
-        $("#loadMore").text("Read more");
-    }
-
-    $(".moreParagraphs").slideToggle(500);
+$('.more').readmore({
+		speed: 300,
+		collapsedHeight: 200,
+		moreLink: '<a class="a1" href="#">Xem Thêm </a>',
+		lessLink: '<a class="a1" href="#">Rút gọn</a>',
+		heightMargin: 16
 });
 
 $('.btn-rate').on("click",function () {

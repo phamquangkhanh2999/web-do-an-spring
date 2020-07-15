@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +57,9 @@ public class DetailController extends  BaseController{
         Product productEntity = productService.findOne(productId);
         ProductVM productVM = new ProductVM();
         ProductPriceVM productPriceVM = new ProductPriceVM();
+
+        DecimalFormat df = new DecimalFormat("#0.00");
+
         if(productEntity!=null) {
             productVM.setId(productEntity.getId());
             productVM.setName(productEntity.getName());
@@ -80,7 +85,8 @@ public class DetailController extends  BaseController{
                     price =sizeColor.getPrice();
                 }
             }
-            productPriceVM.setPrice(price);
+
+            productPriceVM.setPrice(Double.parseDouble(df.format(price)));
             double discount  = 0;
             List<ProductPromotion> productPromotions = productPromotionService.getProductByPromotion(productId);
             if(productPromotions!=null){
@@ -88,7 +94,7 @@ public class DetailController extends  BaseController{
                     discount = price * (1 - productPromotion.getDiscount());
                 }
             }
-            productPriceVM.setDiscount(discount);
+            productPriceVM.setDiscount(Double.parseDouble(df.format(discount)));
 
             /**
              * set list product image vm

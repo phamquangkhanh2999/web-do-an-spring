@@ -17,8 +17,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/js/slick/slick.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/js/slick/slick-theme.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/swiper/css/easyzoom.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/swiper/css/swiper.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/js/star/fontawesome-stars.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/chitiet.css}"/>
 
@@ -30,34 +30,30 @@
     <div class="container">
         <div class="row top-chitiet">
             <div class="col-md-4 col-12">
-                <section id="detail">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 mx-auto">
-                                <!-- Product Images & Alternates -->
-                                <div class="product-images demo-gallery">
-                                    <!-- Begin Product Images Slider -->
-                                    <div class="main-img-slider">
-                                        <a data-fancybox="gallery"  th:href="${productImg.getLink()}" th:each=" productImg : ${vm.getProductVM().getProductImageList()}">
-                                            <img th:src="${productImg.getLink()}" class="img-fluid">
-                                        </a>
-                                    </div>
-                                    <!-- End Product Images Slider -->
-
-                                    <!-- Begin product thumb nav -->
-                                    <ul class="thumb-nav">
-                                        <li th:each=" productImg : ${vm.getProductVM().getProductImageList()}"><img th:src="${productImg.getLink()}"></li>
-                                    </ul>
-                                    <!-- End product thumb nav -->
-                                </div>
-                                <!-- End Product Images & Alternates -->
-
-                            </div>
+                <div class="product__carousel">
+                <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide easyzoom easyzoom--overlay" th:each=" productImg : ${vm.getProductVM().getProductImageList()}">
+                            <a th:href="${productImg.getLink()}">
+                                <img th:src="${productImg.getLink()}" alt=""/>
+                            </a>
                         </div>
+
                     </div>
-                </section>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+                <div class="swiper-container gallery-thumbs">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" th:each=" productImg : ${vm.getProductVM().getProductImageList()}">
+                            <img th:src="${productImg.getLink()}" alt="">
+                        </div>
 
-
+                    </div>
+                </div>
+                <!-- Swiper and EasyZoom plugins end -->
+                </div>
             </div>
 
             <div class="col-md-8 col-12">
@@ -196,29 +192,18 @@
         </div>
 
         <div class="row middle-detail">
-            <div class="col-md-8 col-12">
+            <div class="noidung  col-md-8 col-12">
                 <div class="card">
                     <div class="cuahang">
                         Thông Tin Sản Phẩm
                     </div>
-                    <div class="card-text-paragraph">
-                        <p th:text="${vm.getProductVM().getShortDesc()}">
+                    <div class="more" th:utext="${vm.getProductVM().getDescription()}">
 
-                        </p>
-                        <div class="moreParagraphs" th:utext="${vm.getProductVM().getDescription()}">
-
-                        </div>
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="more">
-                        <button id="loadMore">
-                            Read more
-                        </button>
                     </div>
                 </div>
             </div>
             <!--TSKT-->
-            <div class="col-md-4 col-12">
+            <div class="noidung col-md-4 col-12">
 
                 <div class="box-thong-so-kt">
                     <div class="box-title-thong-so ">Thông số kỹ thuật</div>
@@ -299,7 +284,11 @@
     </div>
     <!--End Content chitiet-->
 </div>
-</br>
+<div class="container">
+    <div class="fb-comments" th:attr="data-href = ${'https://localhost/chi-tiet/' + vm.getProductVM().getId()}" data-href="https://localhost/chi-tiet" data-width="100%" data-numposts="5"></div>
+    </br>
+</div>
+
 
 
 
@@ -314,10 +303,13 @@
 <script th:src="@{/js/Jquery/Jquery.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script th:src="@{/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>
-<script th:src="@{/js/slick/slick.min.js}"></script>
+<script th:src="@{/js/swiper/js/easyzoom.js}"></script>
+<script th:src="@{/js/swiper/js/swiper.min.js}"></script>
 <script th:src="@{/js/star/jquery.barrating.min.js}"></script>
+<script th:src="@{/js/readmore.min.js}"></script>
 <script th:src="@{/js/detail.js}"></script>
 
 </body>
 
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=1135910566759671&autoLogAppEvents=1" nonce="b6OZthM2"></script>

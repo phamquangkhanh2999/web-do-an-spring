@@ -50,3 +50,4 @@ List of constraint violations:[
 2020-Jul-15 01:16:13 AM [http-nio-8080-exec-1] ERROR application.data.service.SizeColorService - could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
 2020-Jul-15 01:18:23 AM [http-nio-8080-exec-6] ERROR application.data.service.SizeColorService - could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
 2020-Jul-15 01:18:30 AM [http-nio-8080-exec-5] ERROR application.data.service.SizeColorService - could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+2020-Jul-16 01:02:15 AM [http-nio-8080-exec-4] INFO  application.data.service.UserService - Start registerNewUser
