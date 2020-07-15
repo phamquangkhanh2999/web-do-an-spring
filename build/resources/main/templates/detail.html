@@ -85,9 +85,7 @@
 
                                         <label class="count_color">Có <font th:text="${vm.getProductVM().getSizeColorVMList().size()}"></font> màu chọn: </label>
                                         <span class="item-color" >
-                                                <span class="item-mau" th:each=" sizeColor : ${vm.getProductVM().getSizeColorVMList()}" th:text="${sizeColor.getColor()}" >  &nbsp;</span>
-
-
+                                                <a class="item-mau" th:href="@{'/chi-tiet/'+${vm.getProductVM().getId()}+'/'+${sizeColor.getColor()}}" th:each=" sizeColor : ${vm.getProductVM().getSizeColorVMList()}" th:attr="data-color=${mau},data-id=${vm.getProductVM().getId()}" th:text="${sizeColor.getColor()}" >  &nbsp;</a>
                                             </span>
                                     </div>
 
@@ -162,7 +160,8 @@
                                 <div sec:authorize="isAuthenticated()">
                                     <div  class="cuahang">Đánh giá sản phẩm </div>
                                     <div class="rate1">
-                                        <select id="example">
+                                        <select id="rate-product" th:attr="data-rate=${sao}" >
+                                            <option value=""></option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -170,7 +169,7 @@
                                             <option value="5">5</option>
                                         </select>
 
-                                        <button class="btn-rate">Đánh giá</button>
+                                        <button class="btn-rate" th:attr="data-product-id=${vm.getProductVM().getId()}">Đánh giá</button>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +309,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JavaScript -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
 <script th:src="@{/js/Jquery/Jquery.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script th:src="@{/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>

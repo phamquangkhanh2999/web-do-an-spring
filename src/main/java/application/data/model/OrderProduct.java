@@ -27,8 +27,6 @@ public class OrderProduct {
     @JoinColumn(name = "product_id")
     private Product product;
 
-
-    
     @Column(name = "amount")
     private int amount;
 

@@ -1,18 +1,14 @@
 package application.controller.web;
 
-import application.data.model.Product;
-import application.data.model.ProductImage;
-import application.data.model.ProductPromotion;
-import application.data.model.SizeColor;
-import application.data.service.ProductPromotionService;
-import application.data.service.ProductService;
-import application.data.service.SizeColorService;
+import application.data.model.*;
+import application.data.service.*;
 import application.model.viewmodel.common.ProductImageVM;
 import application.model.viewmodel.common.ProductPriceVM;
 import application.model.viewmodel.common.ProductVM;
 import application.model.viewmodel.common.SizeColorVM;
 import application.model.viewmodel.productdetail.ProductDetailVM;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +16,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping(path = "/chi-tiet")
-public class DetailController {
+public class DetailController extends  BaseController{
 
     @Autowired
     ProductService productService;
@@ -37,9 +36,20 @@ public class DetailController {
     @Autowired
     ProductPromotionService productPromotionService;
 
+    @Autowired
+    RateService rateService;
+
+    @Autowired
+    UserService userService;
+
     @GetMapping(value = "/{productId}/{color}" )
     public String home(@PathVariable Integer productId,@PathVariable String color, Model model,
-                       @Valid @ModelAttribute("productname") ProductVM productNamee){
+                       @Valid @ModelAttribute("productname") ProductVM productName,
+                       HttpServletResponse response,
+                       HttpServletRequest request,
+                       final Principal principal){
+
+        this.checkCookie(response,request,principal);
         ProductDetailVM vm = new ProductDetailVM();
 
         Product productEntity = productService.findOne(productId);
@@ -107,10 +117,24 @@ public class DetailController {
 
             productVM.setSizeColorVMList(sizeColorVMList);
         };
+        int sao = 0;
+        if ( principal != null ) {
+            String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+            Product product = productService.findOne(productId);
+            User user = userService.findUserByUsername(userName);
+            if(product !=  null && user != null){
+                String username = user.getUserName();
+                List<Integer> stars = rateService.getStarByProductAndUserName(product,username);
+                for(Integer star: stars){
+                    sao =  star.intValue();
+                }
+            }
 
+        }
 
-
-        System.out.println(productPriceVM.getPrice());
+        model.addAttribute("sao", sao);
+        String mau = color;
+        model.addAttribute("mau",mau);
         vm.setProductPriceVM(productPriceVM);
         vm.setProductVM(productVM);
 

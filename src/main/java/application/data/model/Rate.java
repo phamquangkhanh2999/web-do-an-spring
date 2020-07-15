@@ -5,26 +5,23 @@ import javax.persistence.*;
 @Entity(name = "tbl_rate")
 public class Rate {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "rate_id")
-    @Id
     private int id;
 
     @Column(name = "star")
     private int star;
-    @Column(name = "username", insertable = false, updatable = false)
+
+    @Column(name = "username")
     private String userName;
 
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "username")
-    private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id",nullable = false)
+    private Product product;
     @Column(name = "product_id", insertable = false, updatable = false)
     private int productId;
-
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
 
     public Rate() {
 
@@ -62,13 +59,6 @@ public class Rate {
         this.star = star;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Product getProduct() {
         return product;
