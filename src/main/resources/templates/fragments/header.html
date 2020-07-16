@@ -83,13 +83,13 @@
 
 
 
-                        <div class="cart">
-                            <a href="giohang.html">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Giỏ hàng</span>
-                                <span class="cart-number"></span>
-                            </a>
-                        </div> <!-- End Cart -->
+                    <div class="cart" sec:authorize="isAnonymous()">
+                        <a th:href="@{/cart}">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Giỏ hàng</span>
+                            <span class="cart-number"></span>
+                        </a>
+                    </div> <!-- End Cart -->
 
                         <!--<div class="check-order">
                             <a>

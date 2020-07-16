@@ -98,6 +98,49 @@ $(document).ready(function() {
             }
         }
     }
+    $(".themvaogio").on("click", function () {
+        var dataCart = {};
+        var pdInfo = $(this).data("product");
+        var color = $(this).data("color");
+        console.log(color);
+        var price = $('#price').text().trim();
+        console.log(price);
+        dataCart.amount = 1;
+        dataCart.color=color;
+        dataCart.price=price;
+        dataCart.productId = pdInfo;
+        dataCart.guid = getCookie("guid");
+
+        NProgress.start();
+
+        var linkPost = "/api/cart-product/add";
+
+        axios.post(linkPost, dataCart).then(function(res){
+            NProgress.done();
+            if(res.data.success) {
+                swal(
+                    'Success',
+                    res.data.message,
+                    'success'
+                ).then(function() {
+                    location.reload();
+                });
+            } else {
+                swal(
+                    'Fail',
+                    res.data.message,
+                    'error'
+                );
+            }
+        }, function(err){
+            NProgress.done();
+            swal(
+                'Error',
+                'Fail',
+                'error'
+            );
+        });
+    });
 
 
 }); // ready() END

@@ -96,11 +96,11 @@
                 <a th:href="@{'/chi-tiet/'+${vmo.getId()}+'/'+${vmo.getColor()}}"> <img th:src="@{${vmo.getMainImage()}}" alt=""></a>
                 <a th:href="@{'/chi-tiet/'+${vmo.getId()}+'/'+${vmo.getColor()}}"><h3 th:text="${vmo.getName()}"></h3></a>
                 <div class="price" th:if="${vmo.getDiscount() != null}">
-                    <strong th:text="${vmo.getPrice() * (1 - vmo.getDiscount())} "></strong><strong>$</strong>
+                    <strong id="price" th:text="${vmo.getPrice() * (1 - vmo.getDiscount())} "></strong><strong>$</strong>
                     <span th:text="${vmo.getPrice()} "></span>
                 </div>
                 <div class="price" th:if="${vmo.getDiscount() == null}">
-                    <strong th:text="${vmo.getPrice()} "> </strong><strong>$</strong>
+                    <strong id="price" th:text="${vmo.getPrice()} "> </strong><strong>$</strong>
                 </div>
                 <div class="ratingresult">
                     <div class="rateYo" th:if="${vmo.getTbRate() != null}" th:attr="data-rate=${vmo.getTbRate()}"> </div>
@@ -116,8 +116,8 @@
                 <label class="giamgia" th:if="${vmo.getDiscount() != null}">
                     <i class="fa fa-bolt" ></i> <span>Giảm </span><span  th:text="${vmo.getPrice() - (vmo.getPrice() * (1 - vmo.getDiscount()))} "></span> <span>$</span>
                 </label>
-                    <button class="themvaogio" onclick="" title="Thêm vào giỏ"> <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
+                <button class="themvaogio" onclick="" title="Thêm vào giỏ" th:attr="data-product=${vmo.getId()},data-color=${vmo.getColor()}" >
+                    <i aria-hidden="true" class="fa fa-plus" ></i></button>
 
             </a>
         </div>
@@ -154,7 +154,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script th:src="@{/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>
 <script th:src="@{/js/OwlCarousel2-2.3.4/dist/scrolls.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.9.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
 <script th:src="@{/js/scroll.js}"></script>
+
 
 </body>
 </html>

@@ -85,8 +85,9 @@ public class DetailController extends  BaseController{
                     price =sizeColor.getPrice();
                 }
             }
-
-            productPriceVM.setPrice(Double.parseDouble(df.format(price)));
+            double p = Double.parseDouble(df.format(price));
+            System.out.println(p);
+            productPriceVM.setPrice(price);
             double discount  = 0;
             List<ProductPromotion> productPromotions = productPromotionService.getProductByPromotion(productId);
             if(productPromotions!=null){
@@ -94,6 +95,7 @@ public class DetailController extends  BaseController{
                     discount = price * (1 - productPromotion.getDiscount());
                 }
             }
+            discount = Double.parseDouble(df.format(discount));
             productPriceVM.setDiscount(Double.parseDouble(df.format(discount)));
 
             /**
